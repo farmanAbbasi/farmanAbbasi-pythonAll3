@@ -1,0 +1,10 @@
+create a env.ts
+
+export function myFunc(){
+
+}
+
+in module
+import myFunc from './env';//note without {}
+
+use where required as: myFunc()

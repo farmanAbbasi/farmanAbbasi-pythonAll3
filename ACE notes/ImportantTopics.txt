@@ -1,0 +1,14 @@
+The topics mentioned in the exam details were quite covered. 
+
+# GKE/Kubernetes; GCE – local SSDs, vCPUs;
+# IAM – Google Groups, roles, recommend practices for access, service accounts; AppEngine – deployment, A/B versions; 
+# Cloud Storage – nearline, coldline;
+# Deployment Manager;
+# Datastore; Networking - VPCs, Shared VPCs, CIDR addressing, VPNs, firewall rules; 
+# Stackdriver – monitoring, filtering logs; gcloud commands; 
+# BigQuery/BigTable.
+
+
+Ben Lamberts Associate Cloud Engineer Course:
+
+https://acloudguru.com/?utm_source=legacyla&utm_medium=redirect&utm_campaign=one_platformcourse%2Fgoogle-cloud-certified-associate-cloud-engineer

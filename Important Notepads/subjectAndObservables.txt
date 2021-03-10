@@ -1,0 +1,32 @@
+observables: 
+subjects: are observables(can be subscribed) and observers(can emit data also)  both
+
+ex:
+let subject = new Subject<string>();
+// We subscribe to the subject
+subject.subscribe((data) => {
+  console.log("Subscriber got data >>>>> "+ data);
+});
+
+// We use the subject to emit data
+subject.next("Eureka");
+
+// Console result: Subscriber got data >>>>> Eureka
+
+2) Subjects are multicast
+
+that is ek hi data multiple log subscribe kar sakte hain 
+let subject = new Subject<string>();
+
+subject.subscribe((data) => {
+  console.log("Subscriber 1 got data >>>>> "+ data);
+});
+subject.subscribe((data) => {
+  console.log("Subscriber 2 got data >>>>> "+ data);
+});
+
+subject.next("Eureka");
+
+// Console result:
+// Subscriber 1 got data >>>>> Eureka
+// Subscriber 2 got data >>>>> Eureka

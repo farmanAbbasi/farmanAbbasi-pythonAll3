@@ -1,0 +1,19 @@
+Update Global cli:
+once.......................................
+npm uninstall -g @angular/cli
+or force clear cache by
+npm cache clear --force
+then
+npm install -g @angular/cli
+
+for every projects..........................
+
+then go inside folder of projects:
+1)delete node_modules package then
+2)npm install --save-dev @angular/cli@latest
+3)ng update @angular/cli      //then:we have privilage to use ng update so now ,
+4)ng update @angular/core --force 
+
+5)ng update @angular/material --force  (if uses material design)
+
+

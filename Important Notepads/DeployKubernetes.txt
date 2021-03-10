@@ -1,0 +1,152 @@
+importtant link:
+
+https://medium.com/@donovon.carter/regional-gke-clusters-with-google-cloud-deployment-manager-2844acccffc5
+	
+https://medium.com/google-cloud/cloud-deployment-manager-kubernetes-2dd9b8124223
+	
+https://medium.com/google-cloud/2018-google-deployment-manager-5ebb8759a122
+with repo: https://github.com/schweikert/gcp-infra-as-code/blob/master/cluster-1/cluster.yaml	
+	
+working################################################333
+yaml:
+imports:
+   - path: test-template.jinja
+resources:
+   - name: k8s-cluster-me
+     type: test-template.jinja 
+     properties:
+         zone: us-east1-b 
+		 
+jinja:
+resources:
+- name: cluster
+  type: container.v1.cluster
+  properties:
+    zone: {{properties["zone"]}}
+    cluster:
+      description: "My example cluster"
+      initialNodeCount: 2	
+	  
+or
+
+resources:
+
+- name: cluster-via-dm
+  type: container.v1.cluster
+  properties:
+    zone: {{properties["zone"]}}
+    cluster:
+      description: "My example cluster"
+      initialClusterVersion: '1.9.6-gke.1'
+      locations: [ 'europe-west1-b', 'europe-west1-c' ]
+      nodePools:
+      - name: cluster-pool
+        initialNodeCount: 1
+        config:
+          machineType: 'n1-standard-1'
+          oauthScopes:
+          - https://www.googleapis.com/auth/compute
+          - https://www.googleapis.com/auth/devstorage.read_only
+          - https://www.googleapis.com/auth/logging.write
+          - https://www.googleapis.com/auth/monitoring
+        autoscaling:
+          enabled: true
+          minNodeCount: 0
+          maxNodeCount: 50  
+        management:
+          autoUpgrade: true
+          autoRepair: true
+	or
+
+apiVersion: eksctl.io/v1alpha3
+kind: ClusterConfig
+
+metadata:
+  name: cluster-in-existing-vpc
+  region: ap-northeast-1
+
+vpc:
+  subnets:
+    private:
+      ap-northeast-1a: {id: subnet-099ab88b723e0xxxx}
+      ap-northeast-1c: {id: subnet-0b28a3843856dxxxx}
+      ap-northeast-1d: {id: subnet-0c2439e34d6a3xxxx}
+
+
+or
+
+
+
+working one:----------------------------------------------------------
+
+resources:
+- name: cluster-via-dm
+  type: container.v1.cluster
+  properties:
+    zone: {{properties["zone"]}}
+    cluster:
+      description: "My test cluster"
+      initialNodeCount: 2
+      nodeConfig:
+        oauthScopes:
+        - https://www.googleapis.com/auth/compute
+        - https://www.googleapis.com/auth/devstorage.read_only
+        - https://www.googleapis.com/auth/logging.write
+        - https://www.googleapis.com/auth/monitoring	
+
+
+working two with 
+
+resources:
+- name: test-cluster-2-via-dm
+  type: container.v1.cluster
+  properties:
+    zone: us-east1-b
+    cluster:
+      description: My example cluster
+      locations: [ 'us-east1-b', 'us-east1-c', 'us-east1-d' ]
+      network: projects/pname/global/networks/testnetwork
+      subnetwork: projects/pname/regions/us-east1/subnetworks/testnetwork
+      nodePools:
+      - name: cluster-pool
+        initialNodeCount: 1
+        config:
+          machineType: 'n1-standard-1'
+          oauthScopes:
+          - https://www.googleapis.com/auth/compute
+          - https://www.googleapis.com/auth/devstorage.read_only
+          - https://www.googleapis.com/auth/logging.write
+          - https://www.googleapis.com/auth/monitoring
+        autoscaling:
+          enabled: true
+          minNodeCount: 1
+          maxNodeCount: 3  
+        management:
+          autoUpgrade: true
+          autoRepair: true
+----------------------------------------------------------------------
+{% set CLUSTER_NAME = env['name'] %}
+
+resources:
+- name: {{ CLUSTER_NAME }}
+  type: container.v1.cluster
+  properties:
+    zone: {{properties["zone"]}}
+    cluster:
+      name: {{ CLUSTER_NAME }}
+      description: "My test cluster"
+      initialNodeCount: {{ properties['nodeCount'] }}
+      nodeConfig:
+        machine_type: {{ properties['machineType'] }}
+        oauthScopes:
+        - https://www.googleapis.com/auth/compute
+        - https://www.googleapis.com/auth/devstorage.read_only
+        - https://www.googleapis.com/auth/logging.write
+        - https://www.googleapis.com/auth/monitoring	
+		  
+	  
+	  
+	  
+	  
+	
+			

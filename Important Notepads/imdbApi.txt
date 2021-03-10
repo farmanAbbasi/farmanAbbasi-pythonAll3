@@ -1,0 +1,35 @@
+https://developers.themoviedb.org/
+use spiderflash007 and Su....
+
+api key:
+2d347e1b4a6068902af169281eaafe1c
+
+example request
+https://api.themoviedb.org/3/movie/550?api_key=2d347e1b4a6068902af169281eaafe1c
+
+access_token:
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZDM0N2UxYjRhNjA2ODkwMmFmMTY5MjgxZWFhZmUxYyIsInN1YiI6IjVmNzIzNzVkYzkyYzVkMDAzOTQ4YjdiZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lWlYPtpIqKKUKPuEuVY5Wqe6llvneFRLhVeNlrkGE2I
+
+
+
+use this for popular movies
+https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=2d347e1b4a6068902af169281eaafe1c
+
+//page by page
+https://api.themoviedb.org/3/discover/movie?page=2&sort_by=popularity.desc&api_key=2d347e1b4a6068902af169281eaafe1c
+
+for trending movies
+https://api.themoviedb.org/3/trending/all/week?api_key=2d347e1b4a6068902af169281eaafe1c
+
+//for search
+https://api.themoviedb.org/3/search/movie?api_key=2d347e1b4a6068902af169281eaafe1c&query=dilwale
+
+
+for image
+https://image.tmdb.org/t/p/w1280+poster_path
+https://image.tmdb.org/t/p/w1280/2CAL2433ZeIihfX1Hb2139CX0pW.jpg
+
+
+
+//api docs link
+https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id

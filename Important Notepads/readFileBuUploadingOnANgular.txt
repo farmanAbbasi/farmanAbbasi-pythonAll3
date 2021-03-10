@@ -1,0 +1,34 @@
+<div class="Block">
+        <label id="lbl">Code </label>
+        <input type='file' (change)="fileChanged($event)">
+      
+      </div>
+      <div>{{fileData}}</div>
+
+
+
+
+
+  constructor(private tafglobals:TafGlobalsService) { }
+
+  ngOnInit() {
+  }
+
+  
+  file:any;
+  fileData:any;
+fileChanged(e) {
+    this.file = e.target.files[0];
+    console.log(this.file)
+    this.uploadDocument(this.file)
+}
+
+uploadDocument(file) {
+  let fileReader = new FileReader();
+  fileReader.onload = (e) => {
+    // console.log(fileReader.result);
+    this.fileData=fileReader.result
+    //this.tafglobals.ngSourceQuery=this.fileData
+  }
+  fileReader.readAsText(this.file);
+}

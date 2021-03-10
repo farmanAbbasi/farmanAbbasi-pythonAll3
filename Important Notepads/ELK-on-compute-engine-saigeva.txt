@@ -1,0 +1,32 @@
+https://www.youtube.com/watch?v=P0phFCuW79o&t=133s
+
+get the .rpm file
+wget <address of rpm file>
+yum install filename.rpm
+rm -f filename.rpm  
+
+systemctl daemon-reload
+systemctl enable elasticsearch
+systemctl start elasticsearch
+systemctl status elasticsearch
+systemctl restart elasticsearch
+
+#to get the file location of kibana yaml
+rpm -qc elasticsearch
+rpm -qc kibana
+
+
+netstat -nltp #show active connection
+firewall-cmd --permanent --add-port={9200/tcp,9300/tcp}
+firewall-cmd --reload
+firewall-cmd --list-all
+
+
+sudo systemctl daemon-reload
+sudo systemctl enable elasticsearch.service
+sudo systemctl start elasticsearch.service
+sudo systemctl status elasticsearch.service
+
+sudo systemctl enable kibana.service
+sudo systemctl start kibana.service
+############

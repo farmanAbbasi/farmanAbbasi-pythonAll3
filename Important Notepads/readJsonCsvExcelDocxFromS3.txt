@@ -1,0 +1,48 @@
+def getDfFromS3(filename_to_read):
+    Bucket_to_read_from=BUCKET_NAME_TO_UPLOAD
+    client = boto3.client('s3',aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY)
+    result = client.get_object(Bucket=Bucket_to_read_from, Key=filename_to_read) 
+    #for json
+    #text = result["Body"].read().split(b'\n') 
+    #for csv
+    #text= result["Body"].read().decode('utf-8')
+    #df=pd.read_csv(StringIO(text))
+    #return df for csv
+    #for excel
+    text = result['Body'].read()
+    #wb = openpyxl.load_workbook(io.BytesIO(text))
+    #return the wb for excel
+    return text
+
+
+
+////////////////////////////////////////////////////for docx////////////
+import pandas as pd
+from io import StringIO
+import boto3
+import io
+import docx
+
+ACCESS_KEY = ''
+SECRET_KEY = ''
+BUCKET_NAME_TO_UPLOAD='compliance-guidelines-storage-2'
+xcel_file_to_read='test_word.docx'
+
+def getDocxFromS3(xcel_file_to_read):
+    Bucket_to_read_from=BUCKET_NAME_TO_UPLOAD
+    client = boto3.client('s3',aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY)
+    result = client.get_object(Bucket=Bucket_to_read_from, Key=xcel_file_to_read) 
+    text = result['Body'].read()
+    print(text)
+    text=io.BytesIO(text)
+    doc = docx.Document(text)
+    result = [p.text for p in doc.paragraphs]
+    print(result)   
+
+ 
+def lambda_handler(event,context):
+    getDocxFromS3(xcel_file_to_read)
+lambda_handler('','')            
+    
+        
+

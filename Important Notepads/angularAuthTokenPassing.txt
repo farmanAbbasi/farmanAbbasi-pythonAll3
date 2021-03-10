@@ -1,0 +1,17 @@
+import { HttpClient , HttpHeaders} from '@angular/common/http'; 
+
+
+var url="https://translation.googleapis.com/v3/projects/tgs-internal-saige-test-001:translateText";
+    var data={
+      "sourceLanguageCode": "en",
+      "targetLanguageCode": this.targetLanguage,
+      "contents": arrayOfValues,
+      "mimeType": "text/plain"
+    }
+ var headers = new HttpHeaders().set("Authorization", "Bearer " + bToken);
+    
+const httpOptions = {
+      headers: headers
+    };
+
+    return this.http.post(url,data,httpOptions).toPromise();

@@ -1,0 +1,32 @@
+ <select class="languages-select" style="background-color: #e3372f" (change)="onItemChange($event.target.value)">
+                    <option value="1" selected>Theme</option>
+                    <option value="1">Light</option>
+                    <option value="2">Dark</option>
+                    <option value="3">Dracula</option>
+                    <option value="4">Solarized</option>
+                    <option value="5">Monokai</option>
+                </select>
+
+onItemChange(valueForTheme){
+    if(valueForTheme==1){
+      //dark
+      this.codeEditor.setTheme(THEME);
+    }
+    else if(valueForTheme==2){
+      //light
+      this.codeEditor.setTheme(THEME2);
+    }
+    else if(valueForTheme==3){
+      this.codeEditor.setTheme(THEME3);
+    }
+    else if(valueForTheme==4){
+      this.codeEditor.setTheme(THEME4);
+    }
+    else{
+      this.codeEditor.setTheme(THEME5);
+    }
+ }
+
+
+
+

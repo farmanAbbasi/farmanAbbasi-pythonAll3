@@ -1,0 +1,76 @@
+//on angular
+
+selectFile(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.selectedFile = file;
+    }
+  }
+
+  onSubmit() {
+    this.dataSuccess = false;
+    const formData = new FormData();
+
+    formData.append('file', this.selectedFile, this.selectedFile.name);
+    this.fileName = this.selectedFile.name;
+    //add file to globals.latestUploadedFiles
+    this.globals.latestUploadedFiles.push(this.fileName)
+
+    this.http.post(this.globals.uploadURL, formData).subscribe(
+      (res) => {
+        console.log(res)
+        this.mydata = res;
+        var msg = 'uploaded'
+        var returnmsg = this.mydata.output
+        if (returnmsg.toLowerCase().includes('unsupported')) {
+          msg = 'file format not supported';
+          //remove the unsupported file as it got pushed in ablove line
+          this.globals.latestUploadedFiles.pop();
+          Swal.fire(this.fileName, msg, "error")
+          return;
+        }
+        this.dataSuccess = true;
+        Swal.fire(this.fileName, msg, "success")
+      },
+      (err) => {
+        console.log(err)
+      }
+    );
+
+  }
+
+
+
+
+html:
+
+ <input type="file" class="select-css" name="file"  (change)="selectFile($event)" />
+        <br>
+        <button class="btn btnMe" style="background-color: #3473b8"  type="submit" (click)="onSubmit()">Upload</button>
+
+
+
+
+
+
+//on react
+
+selectFile=(e)=>{
+    if (e.target.files.length > 0) {
+      const file = e.target.files[0];
+      this.setState({
+        selectedFile: file
+      })
+    }
+  }
+
+  uploadSelectedFile=()=>{
+      const formData = new FormData(); 
+      formData.append( 
+        "myFile", 
+        this.state.selectedFile, 
+        this.state.selectedFile.name 
+      );
+      console.log(this.state.selectedFile); 
+      axios.post(this.this.props.backend_url+'/blogs/uploadfile', formData); 
+  }

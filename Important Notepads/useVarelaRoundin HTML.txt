@@ -1,0 +1,4 @@
+<link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet"> in index.html
+
+
+ font-family: 'Varela Round', sans-serif; in styles.css body

@@ -1,0 +1,16 @@
+
+Links for Installing Elastic Search and Kibana:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+https://console.cloud.google.com/marketplace/details/elastic-saas/elastic-cloud?q=kibana&id=15f9bba7-9808-43fb-b2a3-68a9118aa11d&project=tek-hyd-gcp-account
+
+https://github.com/GoogleCloudPlatform/click-to-deploy/blob/master/k8s/elasticsearch/README.md
+
+https://portworx.com/run-ha-elasticsearch-elk-google-kubernetes-engine/
+
+https://medium.com/google-cloud/cloud-deployment-manager-kubernetes-2dd9b8124223
+
+https://www.elastic.co/elasticsearch-kubernetes #This is the link which we are majorly following
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-an-elasticsearch-fluentd-and-kibana-efk-logging-stack-on-kubernetes
+
+https://www.elastic.co/guide/en/kibana/master/console-kibana.html

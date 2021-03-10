@@ -1,0 +1,15 @@
+ 
+ 
+ 
+ <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script>
+Email.send({
+    SecureToken : "1c674b20-bca7-4912-93e7-0c914b81c182",
+    To : 'spiderflash007@gmail.com',
+    From : "you@isp.com",
+    Subject : "This is the subject",
+    Body : "And this is the body"
+}).then(
+  message => alert(message)
+);
+  </script>

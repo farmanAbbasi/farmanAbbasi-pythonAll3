@@ -1,0 +1,17 @@
+to install angular on EC2 AWS
+
+Create a Ubuntu(uses apt-get) Linux(yum):
+
+to install dependencies:
+Suppose we choose Linux ami :
+to install nodejs
+1) sudo yum install curl
+2) curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+3) sudo yum install nodejs
+
+then create a folder in instance, pass the ng build --prod dist folder
+making it a zip along with the server.js file
+
+and run server.js &
+to run it continuosly
+

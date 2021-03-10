@@ -1,0 +1,86 @@
+
+
+04/09/2019
+deployment manager:
+
+What to return in the cloud functions.
+Unable to create app engine.
+what to return through app engine.
+
+05/09/2019
+1)app engine has to work in one network /subnet or multiple subnets/networks?
+2)elastic search and kibana and kubernetes today
+3)Script for running the kubernetes deployment?
+4)edit the sheet and add in teams.
+
+
+
+
+Importnat links:
+https://github.com/GoogleCloudPlatform/click-to-deploy/blob/master/k8s/elasticsearch/README.md
+
+to create a script to deploy cluster--------------------
+https://medium.com/google-cloud/cloud-deployment-manager-kubernetes-2dd9b8124223
+
+to help in script ------------------------------
+https://portworx.com/run-ha-elasticsearch-elk-google-kubernetes-engine/
+
+*********************************
+Deploying Elasticsearch in GKE with Elastic Cloud on Kubernetes
+*************************************
+
+made a cluster named: elasticsearch-cluster
+elastic-operator :workloads
+
+
+Error from server (Forbidden): clusterrolebindings.rbac.authorization.k8s.io is forbidden: User "adhegde@teksystems.com" cannot create resource "clusterroleb
+indings" in API group "rbac.authorization.k8s.io" at the cluster scope
+
+KUBERNETES ELASTIC SEARCH and kibana STEPS:*********************************************************************************************************
+create a cluster 
+
+kubectl create clusterrolebinding \
+  cluster-admin-binding \
+  --clusterrole=cluster-admin \
+  --user=$(gcloud auth list --filter=status:ACTIVE --format="value(account)")
+
+Error from server (Forbidden): clusterrolebindings.rbac.authorization.k8s.io is forbidden: User "adhegde@teksystems.com" cannot create resource "clusterroleb
+indings" in API group "rbac.authorization.k8s.io" at the cluster scope
+
+kubectl apply -f https://download.elastic.co/downloads/eck/0.9.0/all-in-one.yaml
+
+write yaml of elastic-search
+kubectl get pods -n elastic-system
+
+kubectl get pods -w
+kubectl get elasticsearch
+
+write yaml of kibana,
+kubectl get kibana
+PASSWORD=$(kubectl get secret quickstart-es-elastic-user -o=jsonpath='{.data.elastic}' |base64 --decode)
+kubectl port-forward service/quickstart-kb-http 5601
+open localhost:5601 and use kibana and elastic search
+
+
+09/09/2019##########################################################################################################################################################
+create everything on tek-Dev-001, 
+testings on sandbox-001
+
+11/09/
+
+use load balancer ip to foward the service requests, 
+add k8s engine in the vpc one, 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+go to a folder
+=>python -m venv vvvv
+=>vvvv\scripts\activate
+
+=>pip list //to see what are installed
+
+//can install some stuff and to freeze 
+=>pip freeze
+
+pip freeze > requirements.txt
+
+//to install from requirements.txt
+=> pip install -r requirements.txt
+
+//to deactivate
+=>deactivate
+//to delete , just delete the directory of env created by u
+
+//to create with system packages
+=>python -m venv myvenv2 --system-site-packages
+
+
+creating virtual env in linux ami 2
+
+python3 -m venv my_vvv/env
+source ~/my_vvv/env/bin/activate
+
+env/lib/python3.7/site-packages
+
+use this command to zip things inside site-packages
+zip -r9 ${OLDPWD}/my_new_s32r.zip .

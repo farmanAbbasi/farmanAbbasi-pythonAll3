@@ -1,0 +1,10 @@
+//npm install moment moment-timezone --save
+import * as moment from 'moment-timezone';
+
+currentTimeZone: any;
+  dateAndTime: any;
+
+this.currentTimeZone = moment.tz.guess()
+    //for fetching date and time
+    const currentTime = new Date();    
+    this.dateAndTime = moment(currentTime).tz(this.currentTimeZone).format("YYYY-MM-DD HH:mm:ss");

@@ -1,0 +1,10 @@
+https://www.potterapi.com/v1/spells?key=$2a$10$0iTod7AHmNZQ9zVnIQXJ/.CC0GjsVzRgMcilvcMGSXji7Qkww0bAC
+
+https://www.potterapi.com/v1/houses?key=$2a$10$0iTod7AHmNZQ9zVnIQXJ/.CC0GjsVzRgMcilvcMGSXji7Qkww0bAC
+
+https://www.potterapi.com/v1/character?key=$2a$10$0iTod7AHmNZQ9zVnIQXJ/.CC0GjsVzRgMcilvcMGSXji7Qkww0bAC
+
+
+https://www.potterapi.com/#spell-routes
+
+username:spiderflash007@gmail.com

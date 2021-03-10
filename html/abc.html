@@ -1,0 +1,51 @@
+<div class="svg-wrap">
+<svg width=""315" height="75">
+<rect class="box" width="315" height="75"/>
+<h1 class="text">im<span class="text-hover"> possible.</span>
+</h1>
+</svg>
+
+<style>
+
+.svg-wrap{
+width:315px;
+height:70px
+}
+.box{
+stroke-dasharray:50 800;
+stroke-dashoffset:-601;
+stroke:#ff0000;
+stroke-width:10px;
+transition:all ease-in-out 1.5s;
+}
+
+.text{
+font-family:sans-serif;
+position:relative;
+top:-80px;
+left:55px;
+color:white;
+letter-spacing:5px}
+
+.text-hover{
+transition:all ease-in-out 1.5s;
+}
+span{
+margin-left:-15px;
+}
+
+.svg-wrap:hover .box{
+stroke-dashoffset:0;
+stroke-dasharray:1000;
+stroke-width:10px;
+stroke:#00faac;
+}
+
+.svg-wrap:hover .text-hover{
+margin-left:0px;
+color:#00faac;}
+
+</style>
+
+
+</div>

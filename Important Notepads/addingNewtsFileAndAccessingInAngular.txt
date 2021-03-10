@@ -1,0 +1,46 @@
+filename : urlFile.ts
+inside content of file:
+export default {"url":"www.google.com"}
+
+to use in any component: 
+import data from './urlFile'
+
+filename: environment.ts
+
+to access in app.module.ts
+import {environment} from './environment'
+
+access anything use .
+like environment.firebase
+
+inside content of file:
+export const environment = {
+    production: false,
+    firebase: getConfig()
+};
+
+on firebase u can return anything a function a va;ue anything
+
+
+function getConfig() {
+    let firebaseConfig= {
+        "apiKey":...
+      };
+    let request = new XMLHttpRequest();
+    try {
+        request.open('GET', baseurl.url+'/authentication', false);  // `false` makes the request synchronous
+        request.send(null);
+
+        if (request.status === 200) {
+            console.log(request.responseText);
+            this.firebaseConfig = request.responseText;
+        }
+        
+     return JSON.parse(this.firebaseConfig);
+         
+    } catch (e) {
+        console.error('environment:getConfig: unable to get api key : ', e);
+    }
+
+    return firebaseConfig;
+}

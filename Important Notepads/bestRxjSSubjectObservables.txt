@@ -1,0 +1,95 @@
+
+Angular Training
+
+Upgrade
+Farman Shaikh
+RxJs Subjects: A tutorial
+Alain Chautard
+Alain Chautard
+Follow
+Feb 7, 2018 · 3 min read
+
+If you have some experience with Angular, you’re probably familiar with Observables from RxJs.
+This article is going to focus on a specific kind of observable called Subject. Subjects are observables themselves but what sets them apart is that they are also observers.
+What does that mean? It means that a subject can emit data, on top of having the capability to be subscribed to. Let’s take a look at an example:
+let subject = new Subject<string>();
+// We subscribe to the subject
+subject.subscribe((data) => {
+  console.log("Subscriber got data >>>>> "+ data);
+});
+
+// We use the subject to emit data
+subject.next("Eureka");
+
+// Console result: Subscriber got data >>>>> Eureka
+A regular observable does not have the next() method as regular observables are not observers. So that’s the first super power of a subject: Data emission.
+Subjects are multicast
+The second super power of subjects is that they support multiple subscriptions. In other words, they are multicast.
+Subjects are like EventEmitters: They maintain a registry of many listeners.
+let subject = new Subject<string>();
+
+subject.subscribe((data) => {
+  console.log("Subscriber 1 got data >>>>> "+ data);
+});
+subject.subscribe((data) => {
+  console.log("Subscriber 2 got data >>>>> "+ data);
+});
+
+subject.next("Eureka");
+
+// Console result:
+// Subscriber 1 got data >>>>> Eureka
+// Subscriber 2 got data >>>>> Eureka
+As a result, you can use a Subject in a service to fetch some data, and send the result to all components that subscribed to that Subject.
+There is one thing I would recommend though: Do not expose the Subject object directly to your components. Instead, return a good old Observable version of it:
+// Don't do that or you subscribers will be able to "mess" with your // subject
+getData(): Subject<Data> {  
+    return this.subject;
+}
+// Do this instead:
+getData(): Observable<Data> {  
+    return this.subject.asObservable();
+}
+The above will make your code much safer and will prevent poor coding practices.
+Behavior Subjects
+Behavior Subjects are another cool thing about subjects. When you subscribe to a behavior subject, it will give you the last emitted value right away.
+Imagine subscribing to a magazine, and right away you receive the latest published issue of it. Wouldn’t that be awesome? Welcome to the world of behavior subjects!
+// Behavior subjects need a first value
+let subject = new BehaviorSubject<string>("First value");
+
+subject.asObservable().subscribe((data) => {
+  console.log("First subscriber got data >>>>> "+ data);
+});
+
+subject.next("Second value")
+
+// Console result:
+// First subscriber got data >>>>> First value
+// First subscriber got data >>>>> Second value
+
+With behavior subjects, it does not matter when you subscribe, you always get the latest value right away, which can be very useful.
+Now what if we want more than just the latest emitted value?
+Replay Subjects
+Replay Subjects keep a given number of historical values so that those values can be replayed to new subscribers.
+// We tell the ReplaySubject how many values should be kept in      // history
+let subject = new ReplaySubject<string>(2);
+
+subject.next("First value");
+subject.next("Second value");
+subject.next("Third value");
+
+subject.asObservable().subscribe((data) => {
+  console.log("First subscriber got data >>>>> "+ data);
+});
+
+subject.next("Fourth value");
+
+//Console result:
+// First subscriber got data >>>>> Second value
+// First subscriber got data >>>>> Third value
+// First subscriber got data >>>>> Fourth value
+In the above example, my Replay Subject keeps a history length of two values. As a result, as a soon as a new subscriber comes up, it gets the last two values, as well as any new value that comes up later on.
+As you can see, Subjects are a very interesting… subject (that was easy!). We just scratched the surface of what they can accomplish, feel free to let me know if you’d like a follow up article with a deeper dive into what they can do.
+My Name is Alain Chautard. I am a Google Developer Expert in Angular, as well as founding consultant and trainer at Angular Training where I help web development teams learn and become fluent with Angular. Check us out @AngularTraining!
+If you enjoyed this article, please clap for it or share it. Your help is always appreciated.
+Angular Training

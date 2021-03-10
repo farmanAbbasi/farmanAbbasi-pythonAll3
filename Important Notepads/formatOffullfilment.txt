@@ -1,0 +1,128 @@
+
+
+
+curl --header "Content-Type: application/json" --user "admin:admin@secret"  -XPOST "localhost:9200/test-index-me/_doc" --data "name:gauti"
+
+
+to change in:
+sg_internal_users, sg_roles_mapping
+used ADMIN_USERNAME, NORMAL_USERNAME and ADMIN_PASSWORD and NORMAL_PASSWORD
+ and $ADMIN_USERNAME_HASHED , $NORMAL_PASSWORD_HASHED
+
+projectid=$1
+cluster-name=$2
+
+au=$3
+ap=$4
+nu=$5
+np=$6
+
+sh main.sh tgs-internal-saige-dev-001 cluster3 admin admin kibana 
+
+
+export AP=$(htpasswd -bnBC 12 "" $4 | tr -d ':\n' )
+sed -i "s/ADMIN_PASSWORD_HASHED/$AP/g" sg_internal_users.yml
+sleep 2
+export NP=$(htpasswd -bnBC 12 "" $6 | tr -d ':\n' )
+sed -i "s/NORMALUSER_PASSWORD_HASHED/$NP/g" sg_internal_users.yml
+
+
+https://saigeae-controller-dot-saige-ascension-25sep.appspot.com/api/v2/createIncident?question=hi&sessionId=98
+
+https://saigeae-controller-dot-saige-ascension-25sep.appspot.com/api/v2/getResp?question=hi&sessionId=3718153449&test=false&suggestions_only=true&exclude_intent=Default%20Welcome%20Intent
+
+https://us-central1-saige-ascension-25sep.cloudfunctions.net/callBearer?hiturl=https://us-central1-saige-ascension-25sep.cloudfunctions.net/saigeReadFAQ
+
+https://saigeui-dot-saige-ascension-25sep.appspot.com/
+
+https://stackoverflow.com/questions/49802163/authorization-bearer-token-angular-5
+
+
+
+.ball {
+        margin-left: 30.4px;
+      }
+
+ margin-left: 42.4px;
+
+
+
+
+   { "platform": "PLATFORM_UNSPECIFIED",
+              "text": { "text": msgArray },
+              "message": "text" },
+            // {
+			// "platform": "PLATFORM_UNSPECIFIED",
+			// "quickReplies": {
+			// 	            "quickReplies": ["Welcome", "Fallback", "Contact Support"]
+			//                },
+			// "message": "quickReplies"
+            // }
+
+
+
+
+POST https://container.googleapis.com/v1beta1/projects/tgs-internal-saige-dev-001/zones/us-central1-a/clusters
+{
+  "cluster": {
+    "name": "standard-cluster-3",
+    "masterAuth": {
+      "clientCertificateConfig": {}
+    },
+    "loggingService": "logging.googleapis.com",
+    "monitoringService": "monitoring.googleapis.com",
+    "network": "projects/tgs-internal-saige-dev-001/global/networks/saige-vpc-sg",
+    "addonsConfig": {
+      "httpLoadBalancing": {},
+      "horizontalPodAutoscaling": {},
+      "kubernetesDashboard": {
+        "disabled": true
+      },
+      "istioConfig": {
+        "disabled": true
+      }
+    },
+    "subnetwork": "projects/tgs-internal-saige-dev-001/regions/us-central1/subnetworks/saige-subnet-sg",
+    "nodePools": [
+      {
+        "name": "default-pool",
+        "config": {
+          "machineType": "n1-standard-1",
+          "diskSizeGb": 100,
+          "oauthScopes": [
+            "https://www.googleapis.com/auth/devstorage.read_only",
+            "https://www.googleapis.com/auth/logging.write",
+            "https://www.googleapis.com/auth/monitoring",
+            "https://www.googleapis.com/auth/servicecontrol",
+            "https://www.googleapis.com/auth/service.management.readonly",
+            "https://www.googleapis.com/auth/trace.append"
+          ],
+          "imageType": "COS",
+          "diskType": "pd-standard"
+        },
+        "initialNodeCount": 3,
+        "autoscaling": {},
+        "management": {
+          "autoUpgrade": true,
+          "autoRepair": true
+        },
+        "version": "1.13.7-gke.8"
+      }
+    ],
+    "networkPolicy": {},
+    "ipAllocationPolicy": {
+      "useIpAliases": true
+    },
+    "masterAuthorizedNetworksConfig": {},
+    "defaultMaxPodsConstraint": {
+      "maxPodsPerNode": "110"
+    },
+    "authenticatorGroupsConfig": {},
+    "privateClusterConfig": {},
+    "databaseEncryption": {
+      "state": "DECRYPTED"
+    },
+    "initialClusterVersion": "1.13.7-gke.8",
+    "location": "us-central1-a"
+  }
+}

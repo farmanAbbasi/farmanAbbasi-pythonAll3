@@ -1,0 +1,46 @@
+https://aws.amazon.com/premiumsupport/knowledge-center/internet-access-lambda-function/
+
+
+NAT gateway (or NAT instance) in a public subnet.
+
+1)create subnets:
+one public subnet two private subnets
+
+2)goto routetables
+create two 
+attach one with public subnet and one with both private subnets 
+
+
+
+3)create a new internet gateway and attach to VPC
+4)goto rt and add the internet gateway on public subnet-rt with destination 0.0.0.0/0
+
+5)now goto NAT gateways and select public subnet with elastic ip
+6) go back to rt and add the private-subnet-rt to target the NAT gateway ith 0.0.0.0/0
+7)at this point we have two route tables
+one public-subnet-rt pointing to internet gateway
+one priavte-subnet-rt pointing to NAT gateway
+
+//private lambda subnet
+subnet-966556ec : private-lambda-1
+subnet-b1bb20fd :private-lambda-2
+
+//public lambda subnet:	
+subnet-fa5da791 :public-redshift-lambda-subnet
+
+//route tables:
+public subnet rt
+
+
+
+
+
+//on roles add
+AWSLambdaVPCAccessExecutionRole
+private subnet rt for our vpc
+
+
+
+//note : On the lambda:
+
+For Subnets, select the private subnets that you created. 

@@ -1,0 +1,55 @@
+http://tutorials.jenkov.com/maven/your-first-maven-project.html
+
+also set, JAVA_HOME:jre path   and JDK_HOME: jdk path
+
+Download and unzip maven-bin from website,
+Open control panel, goto user accounts, change my env variables,
+create 
+M2_HOME: C:\user\Software\maven-3.0.5
+M2: %M2_HOME%\bin
+then in path add: %M2%
+save
+
+create a folder 
+a pom.xml in it, with below content
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <groupId>com.jenkov</groupId>
+
+    <artifactId>hello-world-maven</artifactId>
+
+    <version>1.0.0</version>
+
+</project>
+try mvn clean to see it works
+
+for java creata a directort structure as:
+src->main->java
+
+Note: also - src
+  - main
+    - java
+    - resources
+    - webapp
+  - test
+    - java
+    - resources
+
+- target
+
+->create a directory helloworld i.e package directory,inside this create
+a file HelloWorld.java
+finally:
+
+mvn package
+
+a jar file named in target folder : artifactId-version will be created i.e here: hello-world-maven-1.0.0.jar
+
+to run:
+java -cp helloWorld.jar helloworld.HelloWorld 
+                          package.class

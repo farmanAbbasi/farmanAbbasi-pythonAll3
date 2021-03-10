@@ -1,0 +1,29 @@
+create a component
+ng g c new-component
+
+
+in app-routing.module.ts
+
+const routes: Routes = [];
+
+const routes: Routes = [
+  {
+    path:  'newComponent',
+    component: NewComponentComponent
+  },
+  {
+    path:  '',
+    component: AppComponent
+  },
+];
+
+import { NewComponentComponent } from './new-component/new-component.component';
+
+
+not <router-outlet></router-outlet>
+
+
+#################################
+import { HttpClientModule } from '@angular/common/http';
+
+import { HttpClient } from '@angular/common/http';

@@ -1,0 +1,5 @@
+pip install pythonnet and pyinstaller
+
+then:
+pyinstaller --onefile hello.py
+

@@ -1,0 +1,19 @@
+1 create a cluster 
+
+2 kubectl create clusterrolebinding \
+  cluster-admin-binding \
+  --clusterrole=cluster-admin \
+  --user=$(gcloud auth list --filter=status:ACTIVE --format="value(account)")
+
+3 kubectl apply -f https://download.elastic.co/downloads/eck/0.9.0/all-in-one.yaml
+
+4 write yaml of elastic-search and apply
+5 kubectl get pods -n elastic-system // to see them running
+  kubectl get pods -w
+  kubectl get elasticsearch
+
+6 write yaml of kibana,
+7 kubectl get kibana
+8 PASSWORD=$(kubectl get secret quickstart-es-elastic-user -o=jsonpath='{.data.elastic}' |base64 --decode) //get password
+9 kubectl port-forward service/quickstart-kb-http 5601
+10 open localhost:5601 and use kibana and elastic search
