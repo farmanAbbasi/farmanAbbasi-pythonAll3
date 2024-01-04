@@ -38,11 +38,14 @@ def isBalanced(stringy):
         if i in ['{','(','[']:
             s.push(i)
         else:
-            t=s.pop() 
-            if t+i in ['()','{}','[]']:
-                continue
+            if len(s)>0:
+                 t=s.pop() 
+                 if t+i in ['()','{}','[]']:
+                     continue
+                 else:
+                     return 'NO'
             else:
-                return 'NO'
+                 s.append(i)
          
     if s.isEmpty(): 
         return 'YES'
